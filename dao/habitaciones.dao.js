@@ -1,10 +1,17 @@
+
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default class habitacionesDao {
     
     constructor() {
-        this.path = path.join(process.cwd(), "src/database/habitaciones.database.json");
+        this.path = path.join(__dirname, "../database/habitaciones.json");
+    
     }
 
     #generarId = (habitaciones) => {
@@ -42,7 +49,7 @@ export default class habitacionesDao {
             throw new Error(error.message);
         }
     };
-
+//data[id]
     readFileById = async(id) => {
         try {
             const lodges = await this.readFile();
